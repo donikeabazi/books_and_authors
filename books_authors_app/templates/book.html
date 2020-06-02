@@ -16,6 +16,7 @@
         {% endfor %}    
     </ul>
     <form method="POST">
+        {%csrf_token%}
         <select name="author" id="author">
             {% for author in other_authors %}
                 <option value="{{ author.id }}">{{author.first_name}} {{author.last_name}}</option>    

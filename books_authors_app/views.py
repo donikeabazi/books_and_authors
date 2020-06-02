@@ -25,6 +25,9 @@ def authors(request):
 
 def author(request, id):
     curr_author = Author.objects.get(id=id)
+    if request.POST:
+        book=request.POST['book']
+        curr_author.books.add(book)
     context ={
         "author": Author.objects.get(id=id),
         "author_books": Author.objects.get(id=id).books.all(),
@@ -34,6 +37,9 @@ def author(request, id):
 
 def book(request, id):
     curr_book = Book.objects.get(id=id)
+    if request.POST:
+        author=request.POST['author']
+        curr_book.books.add(author)
     context = {
         "book": Book.objects.get(id=id),
         "book_authors": Book.objects.get(id=id).books.all(),
